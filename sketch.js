@@ -57,3 +57,10 @@ function onCanvas(vector) {
   return vector.x >= 0 && vector.x <= width &&
     vector.y >= 0 && vector.y <= height;
 }
+
+//save art as jpg
+function keyTyped() {
+  if (key === "s") {
+    save("myFlowField.jpg");
+  }
+}

@@ -2,12 +2,11 @@
 
 ## Description
 
-The simulation creates a flow field of particles that move around the screen. The behaviur of the particles can be customized by changing the noise, speed, and thickness of the particles, as well as their color.
+The simulation creates a flow field of particles that move around the screen. The behaviour of the particles can be customized by changing the noise, speed, and thickness of the particles, as well as their colour. Can also save your art.
 
 This is a dynamic flow field simulation using p5.js, where particles move around the screen. The particles’ motion is influenced by Perlin noise, resulting in their fluid and organic movements. The simulation also responds to mouse clicks, shifting to a new noise pattern each time, providing an interactive element to the visualization. If a particle moves off the canvas, it’s repositioned randomly within the canvas, ensuring a continuous flow. 
 
 This project is a work in progress with plans for more customization options in the future.
-
 
 ## Future Enhancements and Features 
 
