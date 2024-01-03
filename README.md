@@ -24,7 +24,6 @@ This project is a work in progress with plans for more customization options in 
 ## How to Use
 
 1. **Clone the repo**: Use `git clone`.
-2. **Open the project**: Use your preferred code editor.
 3. **Run the project**: Open `index.html` in your browser.
 4. **Interact**: Click on the screen to change the noise pattern.
 5. **Customize**: Change particles, noise, speed, thickness and colour.
