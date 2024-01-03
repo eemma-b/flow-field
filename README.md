@@ -8,7 +8,11 @@ This is a dynamic flow field simulation using p5.js, where particles move around
 
 This project is a work in progress with plans for more customization options in the future.
 
-## Future Enhancements and Features 
+## Current Features
+
+- **Save**: Current state of flow field art can be saved as a jpg.
+
+## Future Enhancements
 
 - **Noise**: Adjust the noise to change the randomness of the particle movement.
 - **Speed**: Control the speed of the particles.
