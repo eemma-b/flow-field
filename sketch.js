@@ -1,15 +1,18 @@
 //particles
 let particles = [];
-const numParticles = 1000;
+let numParticles = 2000;
 
 //noise
-const noiseScale = 0.01;
+let noiseScale = 0.01;
 
 //speed
-const speed = 1.5;
+let speed = 1.5;
 
 //stroke weight
-const weight = 1;
+let weight = 1;
+
+//colour
+let colour = [255]; 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -18,7 +21,55 @@ function setup() {
     particles.push(createVector(random(width), random(height)));
   }
   strokeWeight(weight);
-  stroke(255, 0, 0);
+  stroke(colour);
+
+  //event listener to the menu
+  document.getElementById('menuButton').addEventListener('click', function() {
+    let menu = document.getElementById('menu');
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+    } else {
+      menu.style.display = 'none';
+    }
+  });
+
+  //event listeners for the sliders
+  document.getElementById('particleNumber').addEventListener('input', function(e) {
+    numParticles = Number(e.target.value);
+    particles = particles.slice(0, numParticles);
+    while(particles.length < numParticles) {
+      particles.push(createVector(random(width), random(height)));
+    }
+    //redraw the particles
+    draw();
+  });  
+
+  document.getElementById('noise').addEventListener('input', function(e) {
+    noiseScale = Number(e.target.value);
+    move();
+  });
+  
+  document.getElementById('speed').addEventListener('input', function(e) {
+    speed = e.target.value;
+  });
+
+  document.getElementById('thickness').addEventListener('input', function(e) {
+    strokeWeight(e.target.value);
+  });
+
+  document.getElementById('color').addEventListener('input', function(e) {
+    colour = e.target.value;
+  });
+
+  //event listener to save jpg
+  document.getElementById('saveButton').addEventListener('click', function() {
+    save("myFlowField.jpg");
+  });
+
+  document.getElementById('resetButton').addEventListener('click', function() {
+    //reload the page to reset all values
+    location.reload();
+  });
 }
 
 function draw() {
@@ -27,6 +78,7 @@ function draw() {
   //display the particles
   for (let i = 0; i < numParticles; i ++){
     let p = particles[i];
+    stroke(colour);
     point(p.x, p.y);
     move(p);
   }
@@ -48,19 +100,12 @@ function move(p) {
   }
 }
 
-function mouseReleased() {
+function mousePressed() {
   //to change noise values that we get, shifts to new noise pattern
-  noiseSeed(millis);
+  noiseSeed(random(10000));
 }
 
 function onCanvas(vector) {
   return vector.x >= 0 && vector.x <= width &&
     vector.y >= 0 && vector.y <= height;
-}
-
-//save art as jpg
-function keyTyped() {
-  if (key === "s") {
-    save("myFlowField.jpg");
-  }
 }

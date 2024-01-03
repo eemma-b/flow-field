@@ -6,3 +6,37 @@ html, body {
 canvas {
   display: block;
 }
+
+#saveButton {
+  position: absolute;
+  right: 0;
+  padding: 50px 50;
+  font-size: 15px; 
+}
+
+#resetButton {
+  position: absolute;
+  margin-right: 60px;
+  right: 0;
+  padding: 50px 50;
+  font-size: 15px; 
+}
+
+#menu {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+#menuButton {
+  position: absolute;
+  margin-top: 15px;
+  top: 10px;
+  left: 10px; 
+  width: 50px; 
+  height: 50px; 
+  opacity: 0.5;
+}
+
+#menuButton:hover {
+  opacity: 1;
+}

@@ -2,7 +2,7 @@
 
 ## Description
 
-The simulation creates a flow field of particles that move around the screen. The behaviour of the particles can be customized by changing the noise, speed, and thickness of the particles, as well as their colour. Can also save your art.
+The simulation creates a flow field of particles that move around the screen. The behaviour of the particles can be customized by changing the amount of particles, noise, speed, thickness and colour of the particles. Can also save your art.
 
 This is a dynamic flow field simulation using p5.js, where particles move around the screen. The particles’ motion is influenced by Perlin noise, resulting in their fluid and organic movements. The simulation also responds to mouse clicks, shifting to a new noise pattern each time, providing an interactive element to the visualization. If a particle moves off the canvas, it’s repositioned randomly within the canvas, ensuring a continuous flow. 
 
@@ -10,14 +10,15 @@ This project is a work in progress with plans for more customization options in 
 
 ## Current Features
 
-- **Save**: Current state of flow field art can be saved as a jpg.
-
-## Future Enhancements
-
 - **Noise**: Adjust the noise to change the randomness of the particle movement.
 - **Speed**: Control the speed of the particles.
 - **Thickness**: Change the thickness of the particles to create different visual effects.
 - **Colour**: Customize the colour of the particles.
+- **Save**: Current state of flow field art can be saved as a jpg.
+- **Pattern**: Can change the flow and pattern of the particles by clicking the screen.
+
+## Future Enhancements
+
 - **Music Interaction**: Add functionality to allow the particles to move in response to music.
 
 ## How to Use
@@ -26,4 +27,4 @@ This project is a work in progress with plans for more customization options in 
 2. **Open the project**: Use your preferred code editor.
 3. **Run the project**: Open `index.html` in your browser.
 4. **Interact**: Click on the screen to change the noise pattern.
-5. **Customize**: *in progress*
+5. **Customize**: Change particles, noise, speed, thickness and colour.

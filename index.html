@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sketch</title>
+    <title>Flow Field</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -13,6 +13,29 @@
   </head>
 
   <body>
+    <div id="menu" style="display: none;">
+      <label for="particleNumber">Particles:</label>
+      <input type="range" id="particleNumber" min="0" max="4000" step="10" value="2000">
+      
+      <label for="noise">Noise:</label>
+      <input type="range" id="noise" min="0" max="0.04" step="0.001" value="0.02">
+      
+      <label for="speed">Speed:</label>
+      <input type="range" id="speed" min="0" max="6" step="0.01" value="3">
+      
+      <label for="thickness">Thickness:</label>
+      <input type="range" id="thickness" min="0" max="10" step="0.01" value="5">      
+
+      <label for="color">Colour:</label>
+      <input type="color" id="color" value="#ff0000">
+
+      <button id="saveButton">Save</button>
+      <button id="resetButton">Reset</button>
+
+    </div>
+
+    <img src="menu.png" id="menuButton">
+
     <script src="sketch.js"></script>
   </body>
 </html>
