@@ -25,13 +25,13 @@ canvas {
 #menu {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  display: none;
 }
 
 #menuButton {
   position: absolute;
   margin-top: 15px;
-  top: 10px;
-  left: 10px; 
+  margin-left: 15px;
   width: 50px; 
   height: 50px; 
   opacity: 0.5;
