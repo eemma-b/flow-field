@@ -23,15 +23,42 @@ function setup() {
   strokeWeight(weight);
   stroke(colour);
 
-  //event listener to the menu
-  document.getElementById('menuButton').addEventListener('click', function() {
-    let menu = document.getElementById('menu');
-    if (menu.style.display === 'none') {
-      menu.style.display = 'block';
+  // Accessible menu toggle
+  const menuButton = document.getElementById('menuButton');
+  const menu = document.getElementById('menu');
+  const overlay = document.querySelector('.menu-overlay');
+
+  function openMenu() {
+    menu.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    menuButton.setAttribute('aria-expanded', 'true');
+    // Focus first input in menu
+    const firstInput = menu.querySelector('input, button');
+    if (firstInput) firstInput.focus();
+  }
+  function closeMenu() {
+    menu.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.focus();
+  }
+  menuButton.addEventListener('click', function() {
+    if (menu.getAttribute('aria-hidden') === 'true') {
+      openMenu();
     } else {
-      menu.style.display = 'none';
+      closeMenu();
     }
   });
+  // Close menu when clicking overlay
+  overlay.addEventListener('click', closeMenu);
+  // Keyboard accessibility: Escape closes menu
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && menu.getAttribute('aria-hidden') === 'false') {
+      closeMenu();
+    }
+  });
+  // Start with menu closed
+  closeMenu();
 
   //event listeners for the sliders
   document.getElementById('particleNumber').addEventListener('input', function(e) {
