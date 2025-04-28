@@ -119,7 +119,7 @@ canvas {
   outline: 2px solid #333;
 }
 
-/* Hamburger button styles */
+/* hamburger button styles */
 #menuButton {
   position: fixed;
   top: 20px;
@@ -175,7 +175,7 @@ canvas {
   bottom: 0;
 }
 
-/* Overlay when menu is open */
+/* overlay when menu is open */
 .menu-overlay {
   position: fixed;
   top: 0;
@@ -209,4 +209,21 @@ canvas {
   #menu[aria-hidden="false"] {
     transform: translateY(0);
   }
+}
+
+.audio-button {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.audio-button:hover {
+  background-color: #45a049;
 }

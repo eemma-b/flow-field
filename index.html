@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Flow Field</title>
-
     <link rel="stylesheet" type="text/css" href="style.css">
-
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
   </head>
 
   <body>
     <div class="menu-overlay" aria-hidden="true"></div>
     <nav id="menu" role="navigation" aria-label="Main menu">
       <div class="menu-content">
+        <button id="audioButton" type="button" class="audio-button">🎵 Start Audio</button>
         <label for="particleNumber">Particles</label>
         <input type="range" id="particleNumber" min="0" max="4000" step="10" value="2000">
         <label for="noise">Noise</label>

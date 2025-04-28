@@ -12,7 +12,13 @@ let speed = 1.5;
 let weight = 1;
 
 // colour
-let colour = [255]; 
+let colour = '#ffffff';
+
+// audio visualization
+let mic;
+let fft;
+let audioStarted = false;
+let micLevel = 2.0; // amplification factor
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -22,6 +28,11 @@ function setup() {
   }
   strokeWeight(weight);
   stroke(colour);
+
+  // setup audio
+  mic = new p5.AudioIn();
+  fft = new p5.FFT(0.8, 64); // increased smoothing and bins
+  fft.setInput(mic);
 
   // accessible menu toggle
   const menuButton = document.getElementById('menuButton');
@@ -60,6 +71,23 @@ function setup() {
   // start with menu closed
   closeMenu();
 
+  // audio button event listener
+  document.getElementById('audioButton').addEventListener('click', function() {
+    if (!audioStarted) {
+      mic.start(function() {
+        console.log('microphone started');
+        audioStarted = true;
+        this.textContent = '🎵 stop audio';
+      }.bind(this), function(err) {
+        console.error('error starting microphone:', err);
+      });
+    } else {
+      mic.stop();
+      audioStarted = false;
+      this.textContent = '🎵 start audio';
+    }
+  });
+
   // event listeners for the sliders
   document.getElementById('particleNumber').addEventListener('input', function(e) {
     numParticles = Number(e.target.value);
@@ -84,8 +112,10 @@ function setup() {
     strokeWeight(e.target.value);
   });
 
+  // color picker event listener
   document.getElementById('colour').addEventListener('input', function(e) {
     colour = e.target.value;
+    stroke(colour);
   });
 
   // event listener to save jpg
@@ -100,8 +130,28 @@ function setup() {
 }
 
 function draw() {
-  // 2nd parameter to smooth out and see previous iterations
   background(0, 10);
+  
+  // analyze audio if started
+  if (audioStarted) {
+    let spectrum = fft.analyze();
+    
+    // get energy from different frequency ranges
+    let bass = fft.getEnergy(20, 140);    // low frequencies
+    let mid = fft.getEnergy(140, 400);    // mid frequencies
+    let high = fft.getEnergy(400, 2000);  // high frequencies
+    
+    // amplify and constrain
+    bass = constrain(bass * micLevel, 0, 255);
+    mid = constrain(mid * micLevel, 0, 255);
+    high = constrain(high * micLevel, 0, 255);
+    
+    // map different frequency ranges to different effects
+    speed = map(bass, 0, 255, 1, 4);      // bass controls speed
+    noiseScale = map(mid, 0, 255, 0.005, 0.03); // mid controls noise pattern
+    weight = map(high, 0, 255, 1, 4);     // high frequencies control thickness
+  }
+
   // display the particles
   for (let i = 0; i < numParticles; i ++){
     let p = particles[i];
@@ -113,10 +163,8 @@ function draw() {
 
 function move(p) {
   let generateNoise = noise(p.x * noiseScale, p.y * noiseScale);
-  // get value between 0 and 1 using
   let angle = TAU * generateNoise;
   
-  // convert angle to x and y
   p.x += cos(angle) * speed;
   p.y += sin(angle) * speed;
   
