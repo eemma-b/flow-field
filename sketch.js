@@ -75,16 +75,16 @@ function setup() {
   document.getElementById('audioButton').addEventListener('click', function() {
     if (!audioStarted) {
       mic.start(function() {
-        console.log('microphone started');
+        console.log('Microphone started');
         audioStarted = true;
-        this.textContent = '🎵 stop audio';
+        this.textContent = '🎵 Stop audio';
       }.bind(this), function(err) {
-        console.error('error starting microphone:', err);
+        console.error('Error starting microphone:', err);
       });
     } else {
       mic.stop();
       audioStarted = false;
-      this.textContent = '🎵 start audio';
+      this.textContent = '🎵 Start audio';
     }
   });
 
